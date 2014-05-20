@@ -1,7 +1,12 @@
 Vagrant.configure("2") do |config|
     config.vm.define :development do |dev_config|
+        
+        # when your system dont 64bits VM use this box.
+        #dev_config.vm.box = "ubuntu-precise1204-x32-vbox43"
+        #dev_config.vm.box_url = "http://files.vagrantup.com/precise32.box"
         dev_config.vm.box = "ubuntu-precise12042-x64-vbox43"
         dev_config.vm.box_url = "http://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box"
+        
         dev_config.ssh.forward_agent = true
 
         # Default private IP is 192.168.56.101. When running multiple boxes simultaneously give each a unique IP.
