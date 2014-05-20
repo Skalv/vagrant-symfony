@@ -23,6 +23,15 @@ The following packages are also installed:
 5. Modify `/var/www/project/web/app_dev.php` and add `192.168.56.1` to the local ip security array or comment out the section entirely.
 6. You should now be able to see http://local.dev/app_dev.php/ in your browser.
 
+### use ACL for fix problem when using different CLI and Apache users.
+1. Install acl paquet `sudo apt-get install acl`
+2. use following command in `/var/www/project` folder :
+```
+$ HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+$ sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+$ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+```
+
 ### Increasing Speed with Windows Hosts
 Currently using rsync on Windows hosts is the best way to overcome the slow Virtual Box synced folders. You can either use `vagrant rsync-auto` to automatically push changes your changes to your box or your can utilize your IDE's deployment tools to automatically upload your changes. 
 
