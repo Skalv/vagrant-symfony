@@ -45,9 +45,9 @@ class { 'apache':
 
 apache::module { 'rewrite.load': }
 
-apache::vhost { 'local.dev':
-    serverName 		=> "local.dev",
-    serverAlias 	=> "www.local.dev",
+apache::vhost { 'elfib.dev':
+    serverName 		=> "elfib.dev",
+    serverAlias 	=> "www.elfib.dev",
     documentRoot 	=> "/var/www/project/web",
 	envVars			=> [
 		'ErrorLog /var/log/apache2/project_error.log',

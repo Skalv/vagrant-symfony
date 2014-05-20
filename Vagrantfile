@@ -14,13 +14,13 @@ Vagrant.configure("2") do |config|
         dev_config.vm.synced_folder ".", "/vagrant", disabled: true
         
         # Mount /project directory to /var/www/project using default synced folders
-        dev_config.vm.synced_folder "./", "/var/www", {:mount_options => ['dmode=777','fmode=777']}
+        #dev_config.vm.synced_folder "./", "/var/www", {:mount_options => ['dmode=777','fmode=777']}
         
         # Rsync project directory to /var/www/project Requires Vagrant 1.5.x >=
         # These settings are experimental and may require additional refinement
-        #dev_config.vm.synced_folder "project/", "/var/www/project", type: "rsync", 
-        #    :rsync__args => ["--chmod=ugo=rwX", "-rltgoD", "--delete", "-z"], 
-        #    :rsync__exclude => [".git/"] 
+        dev_config.vm.synced_folder "project/", "/var/www/project", type: "rsync", 
+            :rsync__args => ["--chmod=ugo=rwX", "-rltgoD", "--delete", "-z"], 
+            :rsync__exclude => [".git/"] 
         
         dev_config.vm.provider :virtualbox do |v|
             
